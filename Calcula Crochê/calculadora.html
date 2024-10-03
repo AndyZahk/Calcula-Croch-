@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Preço</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d3c2e0; /* Cor de fundo da página (lilás escuro) */
+            position: relative;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #4a1d8c; /* Fundo da barra lateral (roxo) */
+            color: white;
+            padding: 20px;
+            position: absolute;
+            left: -250px;
+            transition: left 0.3s ease-in-out;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #8fd4d1; /* Verde água ao passar o mouse */
+            color: #4a1d8c; /* Texto roxo ao passar o mouse */
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            color: #4a1d8c; /* Cor do ícone do menu (roxo) */
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 3;
+        }
+
+        /* Overlay invisível para detectar cliques fora da barra */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            z-index: 1;
+            display: none;
+        }
+
+        .calculadora-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding-left: 60px; /* Margem esquerda */
+        }
+
+        .calculadora {
+            background-color: #ffffff; /* Fundo da calculadora (branco) */
+            padding: 20px;
+            border: 3px solid #4a1d8c; /* Borda da calculadora (roxa) */
+            border-radius: 10px;
+            color: #4a1d8c; /* Texto da calculadora (roxo) */
+            width: 100%;
+            max-width: 400px;
+        }
+
+        input, button {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #4a1d8c; /* Borda dos campos (roxa) */
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #4a1d8c; /* Fundo dos botões (roxo) */
+            color: white; /* Texto dos botões (branco) */
+        }
+
+        button:hover {
+            background-color: #8fd4d1; /* Fundo dos botões ao passar o mouse (verde água mais escuro) */
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ícone de menu para abrir a barra lateral -->
+    <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div> 
+
+    <!-- Barra lateral -->
+    <div class="sidebar" id="sidebar">
+        <h2>Navegação</h2>
+        <a href="index.html">Página Inicial</a>
+        <a href="calculadora.html">Calculadora de Preços</a> <!-- Link para a calculadora -->
+        <a href="#contato">Contato</a>
+    </div>
+
+    <!-- Overlay invisível para detectar cliques fora da barra -->
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+    <!-- Conteúdo da calculadora -->
+    <div class="calculadora-container">
+        <div class="calculadora">
+            <h2>Calculadora de Preço</h2>
+
+            <label for="nomePeca">Nome da Peça:</label>
+            <input type="text" id="nomePeca" placeholder="Digite o nome da peça (opcional)">
+
+            <label for="material">Valor do Material (R$):</label>
+            <input type="number" id="material" placeholder="0.00" step="0.01">
+
+            <label for="horas">Horas Trabalhadas:</label>
+            <input type="number" id="horas" placeholder="0" step="0.1">
+
+            <label for="custoHora">Custo da Hora (R$):</label>
+            <input type="number" id="custoHora" placeholder="0.00" step="0.01">
+
+            <label for="porcentagem">Porcentagem de Lucro (%):</label>
+            <input type="number" id="porcentagem" placeholder="0" step="0.01">
+
+            <button onclick="calcularPreco()">Calcular Preço de Venda</button>
+            <button onclick="limparCampos()">Limpar</button>
+
+            <div class="result" id="resultado"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.querySelector('#sidebar');
+            var overlay = document.querySelector('#overlay');
+            var isVisible = sidebar.style.left === '0px';
+
+            if (isVisible) {
+                sidebar.style.left = '-250px';
+                overlay.style.display = 'none';
+            } else {
+                sidebar.style.left = '0px';
+                overlay.style.display = 'block';
+            }
+        }
+
+        function closeSidebar() {
+            var sidebar = document.querySelector('#sidebar');
+            var overlay = document.querySelector('#overlay');
+
+            sidebar.style.left = '-250px';
+            overlay.style.display = 'none';
+        }
+
+        function calcularPreco() {
+            const nomePeca = document.getElementById('nomePeca').value;
+            const material = parseFloat(document.getElementById('material').value) || 0;
+            const horas = parseFloat(document.getElementById('horas').value) || 0;
+            const custoHora = parseFloat(document.getElementById('custoHora').value) || 0;
+            const porcentagem = parseFloat(document.getElementById('porcentagem').value) || 0;
+
+            if (isNaN(material) || isNaN(horas) || isNaN(custoHora) || isNaN(porcentagem)) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            const custoTotalHoras = horas * custoHora;
+            const custoTotal = material + custoTotalHoras;
+            const lucro = (custoTotal * (porcentagem / 100));
+            const precoVenda = custoTotal + lucro;
+
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.style.display = 'block';
+
+            if (nomePeca) {
+                resultadoDiv.innerText = `${nomePeca} - Preço Bruto: R$ ${precoVenda.toFixed(2)} | Custo Total: R$ ${custoTotal.toFixed(2)}`;
+            } else {
+                resultadoDiv.innerText = `Preço de Venda: R$ ${precoVenda.toFixed(2)} | Custo Total: R$ ${custoTotal.toFixed(2)}`;
+            }
+        }
+
+        function limparCampos() {
+            document.getElementById('nomePeca').value = '';
+            document.getElementById('material').value = '';
+            document.getElementById('horas').value = '';
+            document.getElementById('custoHora').value = '';
+            document.getElementById('porcentagem').value = '';
+            document.getElementById('resultado').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

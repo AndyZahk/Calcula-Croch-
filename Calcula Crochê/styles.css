@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d3c2e0; /* Cor de fundo da página (lilás escuro) */
+    position: relative;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #4a1d8c; /* Fundo da barra lateral (roxo) */
+    color: white;
+    padding: 20px;
+    position: absolute;
+    left: -250px;
+    transition: left 0.3s ease-in-out;
+    height: 100%;
+    z-index: 2;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #8fd4d1; /* Verde água ao passar o mouse */
+    color: #4a1d8c; /* Texto roxo ao passar o mouse */
+}
+
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: #4a1d8c; /* Cor do ícone do menu (roxo) */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
+}
+
+/* Overlay invisível para detectar cliques fora da barra */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 1;
+    display: none;
+}
+
+.calculadora-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-left: 60px; /* Margem esquerda */
+}
+
+.calculadora {
+    background-color: #e0e0e0; /* Fundo da calculadora alterado para cinza mais escuro */
+    padding: 20px;
+    border: 3px solid #4a1d8c; /* Borda da calculadora (roxa) */
+    border-radius: 10px;
+    color: #4a1d8c; /* Texto da calculadora (roxo) */
+    width: 100%;
+    max-width: 400px;
+}
+
+input, button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #4a1d8c; /* Borda dos campos (roxa) */
+}
+
+button {
+    cursor: pointer;
+    background-color: #4a1d8c; /* Fundo dos botões (roxo) */
+    color: white; /* Texto dos botões (branco) */
+}
+
+button:hover {
+    background-color: #8fd4d1; /* Fundo dos botões ao passar o mouse (verde água mais escuro) */
+}
+
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+    display: none;
+}
