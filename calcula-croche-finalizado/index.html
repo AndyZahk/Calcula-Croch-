@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Site com Barra Lateral</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div> <!-- Ícone de menu -->
+
+    <!-- Barra lateral -->
+    <div class="sidebar" id="sidebar">
+        <h2>Navegação</h2>
+        <a href="#home">Página Inicial</a>
+        <a href="calculadora.html">Calculadora de Preços</a> <!-- Link para a calculadora -->
+    </div>
+
+    <!-- Overlay invisível para detectar cliques fora da barra -->
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+    <!-- Conteúdo da página -->
+    <div class="content" id="content" >
+        <h1>Olá amantes de crochê!</h1>
+        <p>Clique no link ao lado para encontrar a calculadora de preços, lá você poderá calcular o preço de venda do seu produto de forma fácil e intuitiva.</p>
+        <p>Ao rolar a página para baixo, você poderá ver algumas das peças já feitas em meus projetos. As peças são inspiradas em outras já existentes, então fique a vontade para usá-las de referência para seus trabalhos também! 😉</p>
+        <div class="gallery">
+            <!-- As imagens de croche1.jpeg a croche16.jpeg -->
+            <img src="images/croche1.jpeg" alt="Imagem de Crochê 1">
+            <img src="images/croche2.jpeg" alt="Imagem de Crochê 2">
+            <img src="images/croche3.jpeg" alt="Imagem de Crochê 3">
+            <img src="images/croche4.jpeg" alt="Imagem de Crochê 4">
+            <img src="images/croche5.jpeg" alt="Imagem de Crochê 5">
+            <img src="images/croche6.jpeg" alt="Imagem de Crochê 6">
+            <img src="images/croche7.jpeg" alt="Imagem de Crochê 7">
+            <img src="images/croche8.jpeg" alt="Imagem de Crochê 8">
+            <img src="images/croche9.jpeg" alt="Imagem de Crochê 9">
+            <img src="images/croche10.jpeg" alt="Imagem de Crochê 10">
+            <img src="images/croche11.jpeg" alt="Imagem de Crochê 11">
+            <img src="images/croche12.jpeg" alt="Imagem de Crochê 12">
+            <img src="images/croche13.jpeg" alt="Imagem de Crochê 13">
+            <img src="images/croche14.jpeg" alt="Imagem de Crochê 14">
+            <img src="images/croche15.jpeg" alt="Imagem de Crochê 15">
+            <img src="images/croche16.jpeg" alt="Imagem de Crochê 16">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

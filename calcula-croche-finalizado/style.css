@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #d3c2e0;
+    font-family: Arial, sans-serif;
+    display: block;
+    height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #4a1d8c;
+    color: #4a1d8c;
+    padding: 20px;
+    position: absolute;
+    left: -250px;
+    transition: left 0.3s ease-in-out;
+    height: 100%;
+    z-index: 2;
+}
+
+.sidebar h2 {
+    color: white;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #a0e7e5;
+    color: #4a1d8c;
+}
+
+.content {
+    padding: 20px;
+    background-color: #d3c2e0;
+    position: relative;
+    margin-left: 60px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.content h1 {
+    color: #4a1d8c;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.content p {
+    text-align: justify;
+    margin: 0px 110px;
+    
+}
+
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: #4a1d8c;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
+}
+
+/* Overlay invisível para detectar cliques fora da barra */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent; /* Totalmente transparente */
+    z-index: 1;
+    display: none;
+}
+
+.gallery {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    border-color: #888;
+}
